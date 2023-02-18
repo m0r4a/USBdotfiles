@@ -13,6 +13,34 @@ bu=["start the list with 1 bro, wtf", "#bbdefb", "#90caf9", "#64b5f6", "#42a5f5"
 # gn is for green
 gn=["start the list with 1 bro, wtf", "#c8e6c9", "#81c784", "#66bb6a", "#4caf50", "#43a047", "#388e3c", "#2e7d32", "#1b5e20"]
 
+
+Red = "#CC241D"
+Green = "#98971A"
+Yellow = "#D79921"
+Blue = "#458588"
+Purple = "#B16286"
+Aqua = "#689D6A"
+Orange = "#D65D0E"
+
+BGH0 = "#1D2021"
+FGH0 = "#FBF1C7"
+
+BGS0 = "#32302F"
+FGS0 = "#FBF1C7"
+
+BG1 = "#3C3836"
+FG1 = "#EBDBB2"
+
+BG2 = "#504945"
+FG2 = "#D5C4A1"
+
+BG3 = "#665C54"
+FG3 = "#BDAE93"
+
+BG4 = "#7C6F64"
+FG4 = "A89984"
+
+
 def sidebarLeft(position):
     return widget.TextBox(
     text="",
@@ -36,14 +64,22 @@ def icon(icon, padd):
     background=left,
     padding=padd)
 
-def myseparator():
+def myseparator(color):
     return  widget.TextBox(
-    text="",
-    fontsize=12,
-    background=left,
-    foreground=[pp[8],pp[7]],
+    text="|",
+    fontsize=15,
+    background=BGH0,
+    foreground=color,
     )
 
+def placeHolder():
+    return widget.TextBox(
+    text="Widget",
+    fontsize=15,
+    background=BGH0,
+    foreground=FGH0,
+    )        
+        
 
 left = "#458588"
 mid = "#B16286"
@@ -51,93 +87,41 @@ midsqr = "#D3869B"
 right = "#98971A"
 
 primary_widgets = [
-    ### Left
-                sidebarLeft(left),
-                icon("ﮮ", 3),
-                widget.CheckUpdates(
-                    font='Hack Nerd Font Mono',
-                    fontshadow="000000",
-                    fontsize="14",
-                    distro='Arch',
-                    colour_have_updates="ffffff",
-                    colour_no_updates="#00ff21",
-                    display_format='{updates}',
-                    background=left,
-                    no_update_string="",
-                    update_interval=1800,
-                    padding=3, 
-                ),
-                myseparator(),
-                widget.KeyboardLayout(
-                    background=left,
-                    configured_keyboards=['us','es'],
-                    display_map={'us':'','es':'󰺛'},
-                    fontsize=23
-                ),
-                myseparator(),
-                icon("墳", 3),
-                widget.Volume(
-                    background=left,
-                    padding=2,
-                ),
-                myseparator(),
-                widget.Battery(
-                    background=left,
-                    format='{char} {percent:2.0%}',
-                    full_char="",
-                    charge_char="",
-                    discharge_char="",
-                    low_percentage=0.2,
-                    low_foreground="#FF0000",
-                    notify_below=10,
-                    notification_timeout=4,
-                    show_short_text=False,
-                    update_interval=1
 
-                ),
-              
-                sidebarRight(left),
-                widget.TextBox(text=" "),
-#                widget.Image(
-#                    filename='~/.config/qtile/icns/Teams.png',
-#                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn("teams")},
-#                ),
-    ### Mid
-                widget.Spacer(),
-                sidebarLeft(mid),
-                widget.GroupBox(
-                    active='#000000',
-                    inactive="#ffffff",
-                    background=mid,
-                    borderwidth=2,
-                    font="Hack NFM",
-                    fontsize=24,
-                    rounded=True,
-                    #Color de el cuadrito cuando lo seleccionas
-                    highlight_color=midsqr,
-                    highlight_method='line',
-                    #Color de la barra de cuando lo selecionas
-                    this_current_screen_border=[pp[7],pp[5]],
-                    other_screen_border="ffffff"
-                ),
-                sidebarRight(mid),
-                widget.Spacer(),
-    ### Right 
-                sidebarLeft(right),
-                widget.TextBox(text="", background=right, fontsize=24, padding=0),
-                widget.Clock(
-                    format="%b %d - %H:%M",
-                    fontsize=14,
-                    background=right,
-                    padding=8,
-                ),
-                widget.CurrentLayoutIcon(
-                    background=right,
-                    scale=0.7,
-                    padding=-3,
-                ),
-                sidebarRight(right),
-                
+## Left
+        myseparator(Green),
+        placeHolder(),
+        myseparator(Blue),
+        placeHolder(),
+        myseparator(Yellow),
+        placeHolder(),
+        myseparator(Red),
+
+
+        ## Mid
+        widget.Spacer(),
+        widget.GroupBox(
+        active=FG2,
+        inactive=BG2,
+        background=BGH0,
+        font="Hack NFM",
+        fontsize=24,
+        highlight_method='line',
+        highlight_color=BGS0,
+        this_current_screen_border=FG1,
+
+        ),
+
+## Right
+
+        widget.Spacer(),
+        myseparator(Green),
+        placeHolder(),
+        myseparator(Blue),
+        placeHolder(),
+        myseparator(Yellow),
+        placeHolder(),
+        myseparator(Red),
 ]
 
 secondary_widgets = []
